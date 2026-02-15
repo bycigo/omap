@@ -15,7 +15,7 @@ of keys. It leverages Go iterators and supports generic key-value types.
 ## Installation
 
 ```bash
-go get github.com/huang-yi/omap
+go get github.com/bycigo/omap
 ```
 
 ## Usage
