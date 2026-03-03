@@ -12,7 +12,7 @@ It leverages Go iterators (iter.Seq2) and supports generic key-value types.
   - Generic: Supports any comparable key and any value type
   - Efficient: O(1) time complexity for Set, Get, Delete, and Has operations
   - Iteration: Supports range iterator via All() method
-  - JSON: Supports JSON marshaling/unmarshaling, preserving key order
+  - Serialization: Supports JSON/YAML marshaling/unmarshaling, preserving order
   - Sorting: Provides in-place sorting capabilities
 */
 package omap

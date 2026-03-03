@@ -3,6 +3,8 @@ package omap
 import (
 	"encoding/json"
 	"fmt"
+
+	"go.yaml.in/yaml/v3"
 )
 
 func ExampleNew() {
@@ -181,6 +183,30 @@ func ExampleMap_UnmarshalJSON() {
 	_ = json.Unmarshal([]byte(jsonStr), m)
 	fmt.Println(m.Keys())
 	// Output: [foo bar baz]
+}
+
+func ExampleMap_MarshalYAML() {
+	m := New[string, int]()
+	m.Set("foo", 1)
+	m.Set("bar", 2)
+
+	data, _ := yaml.Marshal(m)
+	fmt.Print(string(data))
+	// Output:
+	// foo: 1
+	// bar: 2
+}
+
+func ExampleMap_UnmarshalYAML() {
+	yamlStr := "foo: 1\nbar: 2\nbaz: 3\n"
+	m := New[string, int]()
+
+	_ = yaml.Unmarshal([]byte(yamlStr), m)
+	fmt.Println(m.Keys())
+	fmt.Println(m.Values())
+	// Output:
+	// [foo bar baz]
+	// [1 2 3]
 }
 
 func ExampleSort() {

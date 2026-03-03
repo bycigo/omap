@@ -9,7 +9,7 @@ of keys. It leverages Go iterators and supports generic key-value types.
 - **Generic**: Supports any `comparable` key and any value type.
 - **Efficient**: O(1) for Set, Get, Delete.
 - **Iteration**: Supports `range` iterator.
-- **JSON**: Supports JSON marshaling/unmarshaling, preserving order.
+- **Serialization**: Supports JSON/YAML marshaling and unmarshaling, preserving order.
 - **Sorting**: Provides in-place sorting capabilities.
 
 ## Installation
@@ -149,5 +149,22 @@ data, err := json.Marshal(m)
 
 // Unmarshal
 err := json.Unmarshal(data, m)
+```
+
+### YAML Serialization
+
+`omap` implements `yaml.Marshaler` and `yaml.Unmarshaler` interfaces
+(using [go.yaml.in/yaml/v3](https://pkg.go.dev/go.yaml.in/yaml/v3)), ensuring YAML mappings preserve key order during
+both marshaling and unmarshaling.
+
+```go
+// Marshal
+data, err := yaml.Marshal(m)
+// Output:
+// foo: 1
+// bar: 2
+
+// Unmarshal
+err := yaml.Unmarshal([]byte("foo: 1\nbar: 2\n"), m)
 ```
 
